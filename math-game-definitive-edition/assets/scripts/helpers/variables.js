@@ -5,5 +5,20 @@ let backgroundColor = "#5E35B1";
 
 let startScreen;
 let helpScreen;
+let operationScreen;
+let additionGameScreen;
 
-let currentScreen = "helpScreen";
+let score = 0;
+
+let max;
+let min;
+
+let questionNumber1;
+let questionNumber2;
+
+let answerList;
+let rightAnswerPosition = -1;
+let rightAnswer;
+let clickedAnswerPosition = -1;
+
+let currentScreen = "startScreen";

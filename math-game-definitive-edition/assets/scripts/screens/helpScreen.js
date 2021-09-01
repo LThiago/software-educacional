@@ -23,7 +23,7 @@ class HelpScreen {
     textAlign(RIGHT);
     textSize(40);
     let s = "Use os números ou o mouse para selecionar a alternativa correta.";
-    text(s, 800, 273, 400, 213); // Text wraps within text box
+    text(s, 800, 273, 400, 213);
   }
 
   _drawVideoFrame() {

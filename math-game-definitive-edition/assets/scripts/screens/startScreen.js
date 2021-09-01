@@ -13,7 +13,6 @@ class StartScreen {
   }
 
   _drawGameTitle() {
-    // line(0, canvaHeight / 4, canvaWidth, canvaHeight / 4);
     textAlign(CENTER);
     textSize(100);
     text("Math Game", 340, 53, 600, 130);
