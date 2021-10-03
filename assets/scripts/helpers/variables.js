@@ -7,6 +7,9 @@ let startScreen;
 let helpScreen;
 let operationScreen;
 let additionGameScreen;
+let subtractionGameScreen;
+let multiplicationGameScreen;
+let divisionGameScreen;
 
 let score = 0;
 

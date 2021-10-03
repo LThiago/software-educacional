@@ -18,7 +18,15 @@ function draw() {
     score++;
     console.log(score);
 
-    additionGameLoop();
+    if (currentScreen == "additionGameScreen") {
+      additionGameLoop();
+    } else if (currentScreen == "subtractionGameScreen") {
+      subtractionGameLoop();
+    } else if (currentScreen == "multiplicationGameScreen") {
+      multiplicationGameLoop();
+    } else if (currentScreen == "divisionGameScreen") {
+      divisionGameLoop();
+    }
   } else if (
     clickedAnswerPosition != -1 &&
     clickedAnswerPosition != rightAnswerPosition
@@ -28,7 +36,15 @@ function draw() {
     score--;
     console.log(score);
 
-    additionGameLoop();
+    if (currentScreen == "additionGameScreen") {
+      additionGameLoop();
+    } else if (currentScreen == "subtractionGameScreen") {
+      subtractionGameLoop();
+    } else if (currentScreen == "multiplicationGameScreen") {
+      multiplicationGameLoop();
+    } else if (currentScreen == "divisionGameScreen") {
+      divisionGameLoop();
+    }
   }
 }
 
@@ -68,23 +84,31 @@ function mousePressed() {
       mouseY >= 188 &&
       mouseY <= 401
     ) {
-      console.log("2");
+      currentScreen = "subtractionGameScreen";
+      subtractionGameLoop();
     } else if (
       mouseX >= 182 &&
       mouseX <= 582 &&
       mouseY >= 441 &&
       mouseY <= 654
     ) {
-      console.log("3");
+      currentScreen = "multiplicationGameScreen";
+      multiplicationGameLoop();
     } else if (
       mouseX >= 698 &&
       mouseX <= 1098 &&
       mouseY >= 441 &&
       mouseY <= 654
     ) {
-      console.log("4");
+      currentScreen = "divisionGameScreen";
+      divisionGameLoop();
     }
-  } else if (currentScreen == "additionGameScreen") {
+  } else if (
+    currentScreen == "additionGameScreen" ||
+    currentScreen == "subtractionGameScreen" ||
+    currentScreen == "multiplicationGameScreen" ||
+    currentScreen == "divisionGameScreen"
+  ) {
     if (mouseX >= 182 && mouseX <= 582 && mouseY >= 188 && mouseY <= 401) {
       clickedAnswerPosition = 0;
     } else if (
@@ -116,15 +140,15 @@ function additionGameLoop() {
   additionGameScreen = new AdditionGameScreen();
   if (score >= 0 && score <= 5) {
     min = 1;
-    max = 11;
+    max = 10;
     range = 3;
   } else if (score > 5 && score <= 10) {
     min = 1;
-    max = 101;
+    max = 100;
     range = 3;
   } else if (score > 10 && score <= 15) {
     min = 1;
-    max = 101;
+    max = 1000;
     range = 3;
   }
   questionNumber1 = generateRoundRandomNumber(min, max);
@@ -141,6 +165,113 @@ function additionGameLoop() {
   additionGameScreen.answer4 = answerList[3];
 
   additionGameScreen.draw();
+}
+
+function subtractionGameLoop() {
+  subtractionGameScreen = new SubtractionGameScreen();
+  if (score >= 0 && score <= 5) {
+    min = 1;
+    max = 10;
+    range = 3;
+  } else if (score > 5 && score <= 10) {
+    min = 1;
+    max = 100;
+    range = 3;
+  } else if (score > 10 && score <= 15) {
+    min = 1;
+    max = 1000;
+    range = 3;
+  }
+  questionNumber1 = generateRoundRandomNumber(min, max);
+  while (true) {
+    questionNumber2 = generateRoundRandomNumber(min, max);
+    if (questionNumber2 < questionNumber1) {
+      break;
+    }
+  }
+
+  rightAnswer = questionNumber1 - questionNumber2;
+  answerList = generateAnswerList(rightAnswer);
+
+  subtractionGameScreen.question = questionNumber1 + " - " + questionNumber2;
+
+  subtractionGameScreen.answer1 = answerList[0];
+  subtractionGameScreen.answer2 = answerList[1];
+  subtractionGameScreen.answer3 = answerList[2];
+  subtractionGameScreen.answer4 = answerList[3];
+
+  subtractionGameScreen.draw();
+}
+
+function multiplicationGameLoop() {
+  multiplicationGameScreen = new MultiplicationGameScreen();
+  if (score >= 0 && score <= 5) {
+    min = 1;
+    max = 10;
+    range = 3;
+  } else if (score > 5 && score <= 10) {
+    min = 1;
+    max = 100;
+    range = 3;
+  } else if (score > 10 && score <= 15) {
+    min = 1;
+    max = 1000;
+    range = 3;
+  }
+  questionNumber1 = generateRoundRandomNumber(min, max);
+  questionNumber2 = generateRoundRandomNumber(min, max);
+
+  rightAnswer = questionNumber1 * questionNumber2;
+  answerList = generateAnswerList(rightAnswer);
+
+  multiplicationGameScreen.question = questionNumber1 + " × " + questionNumber2;
+
+  multiplicationGameScreen.answer1 = answerList[0];
+  multiplicationGameScreen.answer2 = answerList[1];
+  multiplicationGameScreen.answer3 = answerList[2];
+  multiplicationGameScreen.answer4 = answerList[3];
+
+  multiplicationGameScreen.draw();
+}
+
+function divisionGameLoop() {
+  divisionGameScreen = new DivisionGameScreen();
+  if (score >= 0 && score <= 5) {
+    min = 1;
+    max = 10;
+    range = 3;
+  } else if (score > 5 && score <= 10) {
+    min = 1;
+    max = 100;
+    range = 3;
+  } else if (score > 10 && score <= 15) {
+    min = 1;
+    max = 1000;
+    range = 3;
+  }
+  while (true) {
+    questionNumber1 = generateRoundRandomNumber(min, max);
+    questionNumber2 = generateRoundRandomNumber(min, max);
+    if (
+      (questionNumber1 / questionNumber2) % 1 == 0 &&
+      questionNumber2 != 1 &&
+      questionNumber1 != questionNumber2
+    ) {
+      break;
+    }
+  }
+
+  rightAnswer = questionNumber1 / questionNumber2;
+  answerList = generateAnswerList(rightAnswer);
+
+  divisionGameScreen.question = questionNumber1 + " ÷ " + questionNumber2;
+
+  divisionGameScreen.answer1 = answerList[0];
+  divisionGameScreen.answer2 = answerList[1];
+  divisionGameScreen.answer3 = answerList[2];
+  divisionGameScreen.answer4 = answerList[3];
+
+  divisionGameScreen.draw();
 }
 
 function generateRoundRandomNumber(min, max) {

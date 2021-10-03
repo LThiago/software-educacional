@@ -2,11 +2,12 @@
 
 ## About this repository
 
-In this repository you will find all the requested tasks in the Computer Science course at UEPB.
+In this repository you will find a game that is the final project of the Educational Software course.
 
-## Repository's structure
+## Math Game: DEFINITIVE EDITION
 
-Each directory corresponds to an task requested by the teacher.
+![image](assets/images/readme/startScreen.png)
+![image](assets/images/readme/helpScreen.png)
 
 ---
 
