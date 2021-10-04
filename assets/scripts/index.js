@@ -4,6 +4,10 @@ function setup() {
   startScreen = new StartScreen();
   helpScreen = new HelpScreen();
   operationScreen = new OperationScreen();
+  backgroundImage = loadImage(startScreenBackgroundPath);
+  additionGameScreen = new AdditionGameScreen();
+
+  font = loadFont(fontPath);
 }
 
 function draw() {
@@ -55,12 +59,21 @@ function handleScreens() {
     operationScreen.draw();
   } else if (currentScreen === "helpScreen") {
     helpScreen.draw();
+  } else if (currentScreen === "additionGameScreen") {
+    additionGameScreen.draw();
+  } else if (currentScreen === "subtractionGameScreen") {
+    subtractionGameScreen.draw();
+  } else if (currentScreen === "multiplicationGameScreen") {
+    multiplicationGameScreen.draw();
+  } else if (currentScreen === "divisionGameScreen") {
+    divisionGameScreen.draw();
   }
 }
 
 function mousePressed() {
   if (currentScreen === "startScreen") {
     if (mouseX >= 140 && mouseX <= 540 && mouseY >= 410 && mouseY <= 560) {
+      backgroundImage = loadImage(operationsScreenBackgroundPath);
       currentScreen = "operationScreen";
     } else if (
       mouseX >= 740 &&
@@ -68,13 +81,16 @@ function mousePressed() {
       mouseY >= 410 &&
       mouseY <= 560
     ) {
+      backgroundImage = loadImage(helpScreenBackgroundPath);
       currentScreen = "helpScreen";
     }
   } else if (currentScreen === "helpScreen") {
     if (mouseX >= 810 && mouseX <= 1210 && mouseY >= 500 && mouseY <= 650) {
+      backgroundImage = loadImage(startScreenBackgroundPath);
       currentScreen = "startScreen";
     }
   } else if (currentScreen == "operationScreen") {
+    backgroundImage = loadImage(questionScreenBackgroundPath);
     if (mouseX >= 182 && mouseX <= 582 && mouseY >= 188 && mouseY <= 401) {
       currentScreen = "additionGameScreen";
       additionGameLoop();
